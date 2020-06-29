@@ -1,12 +1,12 @@
-package authToken
+package accessToken
 
 import (
 	"testing"
 )
 
-func TestAuthToken(t *testing.T) {
+func TestAccessToken(t *testing.T) {
 	// gen
-	token := Create(100)
+	token := Create(100, "")
 	t.Logf("Token-> %#v", token)
 
 	// parse
