@@ -1,0 +1,40 @@
+account:
+  srv:
+    network: ""
+    listen_address: :0
+    outer_host: ""
+    tls_cert_file: ""
+    tls_key_file: ""
+    default_session_age: 0s
+    default_context_age: 0s
+    slow_comet_duration: 500ms
+    default_body_codec: ""
+    print_detail: true
+    count_time: true
+    enable_heartbeat: true
+  etcd:
+    endpoints:
+    - http://127.0.0.1:2379
+    dial_timeout: 0s
+    username: ""
+    password: ""
+  mysql:
+    database: tp-user
+    username: root
+    password: ""
+    host: 127.0.0.1
+    port: 3306
+    max_idle_conns: 0
+    max_open_conns: 0
+    conn_max_lifetime: 0
+    no_cache: false
+  redis:
+    deploy_type: single
+    for_single:
+      addr: 127.0.0.1:6379
+    for_cluster:
+      addrs: []
+    pool_size_per_node: 0
+    idle_timeout: 0
+  cache_expire: 24h0m0s
+  log_level: TRACE
