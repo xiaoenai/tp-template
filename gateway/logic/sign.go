@@ -19,7 +19,7 @@ func autoVerifySign(params types.RequestArgs, body []byte, fn types.AuthFunc) (*
 	accessTokenIface, rerr := fn(goutil.BytesToString(args.QueryString()))
 	if rerr != nil {
 		// 允许不进行授权
-		if rerr == tp.NewRerror(tp.CodeUnauthorized, "授权失败", "") {
+		if rerr.Code == tp.CodeUnauthorized {
 			return nil, nil
 		}
 		return nil, rerr

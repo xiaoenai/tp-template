@@ -51,6 +51,6 @@ func Main() {
 
 // RegBuilder 注册构建AccessToken的函数
 // 注：若注册AccessToken的构建函数为nil，或重复注册，均会发生panic
-func RegBuilder(authType string, fn accessToken.Builder) {
-	logic.RegBuilder(authType, fn)
+func RegBuilder(authName string, fn accessToken.Builder) {
+	logic.RegBuilder(authName, fn)
 }

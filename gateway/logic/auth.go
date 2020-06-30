@@ -49,8 +49,8 @@ func SupportAuthName(authName string) bool {
 }
 
 // LookupBuilder
-func LookupBuilder(authType string) (accessToken.Builder, *tp.Rerror) {
-	fn, ok := authFuncLib[authType]
+func LookupBuilder(authName string) (accessToken.Builder, *tp.Rerror) {
+	fn, ok := authFuncLib[authName]
 	if !ok {
 		return nil, tp.NewRerror(tp.CodeUnauthorized, "不支持的授权类型", "")
 	}
@@ -78,8 +78,8 @@ func authFunc(authInfo string) (types.AccessToken, *tp.Rerror) {
 	}
 
 	// 网关授权名称
-	authType := goutil.BytesToString(args.Peek(AUTH_NAME_KEY))
-	fn, rerr := LookupBuilder(authType)
+	authName := goutil.BytesToString(args.Peek(AUTH_NAME_KEY))
+	fn, rerr := LookupBuilder(authName)
 	if rerr != nil {
 		return nil, rerr
 	}
@@ -92,9 +92,8 @@ func authFunc(authInfo string) (types.AccessToken, *tp.Rerror) {
 	}
 
 	// 标记已通过网关验证
-	t.AddedQuery().Set(PASS_KEY, "gwp")
+	t.AddedQuery().Set(PASS_KEY, "gw")
 	// 添加用户信息及设备标识
 	t.AddedQuery().Set(UID_KEY, t.Uid())
-	t.AddedQuery().Set(DEVICE_ID_KEY, t.DeviceId())
 	return t, rerr
 }
