@@ -95,5 +95,5 @@ func (a *AccessToken) AddedQuery() *utils.Args {
 
 // DeviceId returns the user id number.
 func (a *AccessToken) DeviceId() string {
-	return ""
+	return a.deviceId
 }
